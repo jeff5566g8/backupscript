@@ -1,0 +1,9 @@
+[Path]
+backupPath=D:\PB_backup\	目的路徑
+copyPath=default					原始檔路徑 default則為bat檔存在路徑
+[Prog]
+Progcount=4								欲備份之類別數 如增加類別則需更改
+Prog1=kbos								欲備份之類別名 
+Prog2=len
+Prog3=ubs
+Prog4=test
