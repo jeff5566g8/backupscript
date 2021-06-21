@@ -9,11 +9,11 @@
 @set keycp=copyPath
 @set keyp=Progcount
 for /f "eol=[ tokens=1,2 delims==" %%i in (bkconfig.ini) do (
-		::fixed path with space
     if %%i== %keybk% set bakpath=%%j
     if %%i== %keycp% set copath=%%j
 		if %%i== %keyp% set pcount=%%j)
-if %copath%==default set copath=%~dp0
+::fixed path with space
+if "%copath%"=="default" set copath=%~dp0
 set /A x=0
 ::setlocal enabledelayedexpansion
 for /f "eol=[ skip=5 tokens=1,2 delims==" %%i in (bkconfig.ini) do (
@@ -27,6 +27,7 @@ SET /P str="開始所列檔案之備份作業: " < nul
 for /L %%i in (1,1,%n%) do call SET /P str2= "%%i.%%array[%%i]%% " <nul
 echo.
 for /L %%j in (1,1,%n%) do (
+::fixed path with space
 	call xcopy "%copath%%%array[%%j]%%*.pbl" "%bakpath%%today%" /i /y /d >> backup.log && call echo %copath%%%array[%%j]%%*.pbl done || call echo %copath%%%array[%%j]%%*.pbl error
 	ping 127.0.0.1 -n 1 -w 1500 > nul
 	call xcopy "%copath%%%array[%%j]%%*.pbd" "%bakpath%%today%" /i /y /d >> backup.log && call echo %copath%%%array[%%j]%%*.pbd done || call echo %copath%%%array[%%j]%%*.pbd error
